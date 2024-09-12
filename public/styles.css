@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  height: 100vh;
+  width: 100%;
+}
+
+#sign-up-box, #sign-in-box {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+#sign-up-box p, #sign-in-box p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#sign-up-box input[type="text"],
+#sign-up-box input[type="password"],
+#sign-in-box input[type="text"],
+#sign-in-box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+#sign-up-box input[type="text"]:focus,
+#sign-up-box input[type="password"]:focus,
+#sign-in-box input[type="text"]:focus,
+#sign-in-box input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#sign-up-box button,
+#sign-in-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: green;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sign-up-box button:hover,
+#sign-in-box button:hover {
+    background-color: #0056b3;
+}
+
+#sign-up-box button:nth-child(5),
+#sign-in-box button:nth-child(5) {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+    margin-top: 5px;
+}
+
+#sign-up-box button:nth-child(5):hover,
+#sign-in-box button:nth-child(5):hover {
+    background-color: #007bff;
+    color: white;
+}
+
+#to-do-box {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#to-do-box p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#logout {
+    background-color: #ff4d4d;
+    color: white;
+    border: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin: 2px;
+    margin-bottom: 3px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout:hover {
+    background-color: #cc0000;
+}
+
+#to-do-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#to-do-input input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#to-do-input input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+#to-do-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#to-do-input button:hover {
+    background-color: #0056b3;
+}
+
+/* Container for the to-do list items */
+#todo-list {
+    margin-top: 20px;
+}
+
+/* Styling each to-do item */
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Input fields inside each to-do item */
+.todo-item input[type="text"] {
+    padding: 8px;
+    width: 75%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+}
+
+/* Removing default outline on focus */
+.todo-item input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Checkbox size and styling */
+.todo-item input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.3);
+    transform-origin: center;
+}
+
+/* Styling both Edit and Delete buttons */
+.todo-item button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Edit button styling */
+.todo-item button.edit-btn {
+    background-color: #8b4513; /* Brown color */
+    border: 1px solid #6a2e0f;
+}
+
+.todo-item button.edit-btn:hover {
+    background-color: #a0522d; /* Darker brown on hover */
+}
+
+/* Delete button styling */
+.todo-item button.delete-btn {
+    background-color: #dc3545; /* Red */
+    border: 1px solid #a71d2a;
+    margin-left: 8px;
+}
+
+.todo-item button.delete-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Add a slight scale-up effect on hover for buttons */
+.todo-item button:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="sign-up-box" style="display: none">
+      <p>Sign Up</p>
+      <input id="signup-username" type="text" placeholder="username" required />
+      <input
+        id="signup-password"
+        type="password"
+        placeholder="password"
+        required
+      />
+      <button onclick="signup()">Register</button>
+      <button onclick="moveToSignin()">
+        Already have an account ? Sign In
+      </button>
+    </div>
+
+    <div id="sign-in-box" style="display: block">
+      <p>SignIn</p>
+      <input id="signin-username" type="text" placeholder="username" required />
+      <input
+        id="signin-password"
+        type="password"
+        placeholder="password"
+        required
+      />
+      <button onclick="signin()">Submit</button>
+      <button onclick="moveToSignup()">Don't have an account ? Register</button>
+    </div>
+    <br />
+
+    <div id="to-do-box" style="display: none">
+      <div>
+        <p>Minimialist To-Do List</p>
+        <button id="logout" onclick="logout()">Logout</button>
+      </div>
+
+      <div id="to-do-input">
+        <input type="text" id="input" placeholder="Add a new task......">
+        <button onclick="addTodo()">Add</button>
+      </div>
+
+      <div id="todo-list"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
