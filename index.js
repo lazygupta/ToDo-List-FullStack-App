@@ -10,7 +10,7 @@ const todos = []
 
 const JWT_SECRET = "ilovewebdev"
 
-app.use(express.static(path.join(__dirname))); 
+app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/signup", (req, res) => {
 
