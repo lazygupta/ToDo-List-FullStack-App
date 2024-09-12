@@ -20,8 +20,6 @@ const signup = async () =>  {
             password,
         });
 
-        alert(response.data.message);
-
         if (response.data.message === "You are signed up successfully!") {
             moveToSignin();
         }
