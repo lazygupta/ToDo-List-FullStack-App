@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 5;
 
 mongoose.connect(
-  "mongodb+srv://lazyrabbit:lazyrabbit123@cluster0.kjmsh.mongodb.net/todo-app-fullstack"
+  "monogodb URI"
 );
 
 app.use(express.json());
