@@ -15,7 +15,7 @@ const signup = async () =>  {
     const password = document.getElementById("signup-password").value;
 
     try {
-        const response = await axios.post("https://todo-list-fullstack-app-1.onrender.com/signup", {
+        const response = await axios.post(`${window.location.origin}/signup`, {
             username,
             password,
         });
@@ -44,7 +44,7 @@ const signin = async () => {
   const password = document.getElementById("signin-password").value;
 
   try {
-    const response = await axios.post("http://localhost:3001/signin", {
+    const response = await axios.post(`${window.location.origin}/signup`, {
       username,
       password,
     });
@@ -81,7 +81,7 @@ const addTodo = async () => {
     const token = localStorage.getItem("token");
 
     await axios.post(
-      "https://todo-list-fullstack-app-1.onrender.com/todo",
+      `${window.location.origin}/todo`,
       { title: title },
       {
         headers: {
@@ -110,7 +110,7 @@ const getTodos = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await axios.get("http://localhost:3001/todo", {
+    const response = await axios.get(`${window.location.origin}/todo`, {
       headers: {
         token: token,
       },
@@ -198,7 +198,7 @@ async function updateTodo(id, newTitle) {
 
   try {
     await axios.put(
-      `http://localhost:3001/todo/${id}`,
+      `${window.location.origin}/todo/${id}`,
       { title: newTitle },
       {
         headers: { token: token },
@@ -215,7 +215,7 @@ const deleteTodo = async (id) => {
   const token = localStorage.getItem("token");
 
   try {
-    await axios.delete(`http://localhost:3001/todo/${id}`, {
+    await axios.delete(`${window.location.origin}/todo/${id}`, {
       headers: { token: token },
     });
 
@@ -258,7 +258,7 @@ async function toggleTodoDone(id, done) {
   try {
     // Send the updated status of the To-Do (done/undone) to the server
     await axios.put(
-      `http://localhost:3001/todos/${id}/done`,
+      `${window.location.origin}/todo/${id}/done`,
       { done: !done }, // Toggle the done state
       {
         headers: { Authorization: token },
