@@ -15,7 +15,7 @@ const signup = async () =>  {
     const password = document.getElementById("signup-password").value;
 
     try {
-        const response = await axios.post("http://localhost:3001/signup", {
+        const response = await axios.post("https://todo-list-fullstack-app-1.onrender.com/signup", {
             username,
             password,
         });
@@ -81,7 +81,7 @@ const addTodo = async () => {
     const token = localStorage.getItem("token");
 
     await axios.post(
-      "http://localhost:3001/todo",
+      "https://todo-list-fullstack-app-1.onrender.com/todo",
       { title: title },
       {
         headers: {
