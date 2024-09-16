@@ -44,7 +44,7 @@ const signin = async () => {
   const password = document.getElementById("signin-password").value;
 
   try {
-    const response = await axios.post(`${window.location.origin}/signup`, {
+    const response = await axios.post(`${window.location.origin}/signin`, {
       username,
       password,
     });
