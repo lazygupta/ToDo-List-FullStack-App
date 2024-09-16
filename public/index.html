@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+
+
     <div id="sign-up-box" style="display: none">
       <p>Sign Up</p>
       <input id="signup-username" type="text" placeholder="username" required />
@@ -21,9 +23,12 @@
       <button onclick="moveToSignin()">
         Already have an account ? Sign In
       </button>
+      <p id="signup-message" style="color: green;"></p>
     </div>
 
-    <div id="sign-in-box" style="display: block">
+
+
+    <div id="sign-in-box" style="display: block;">
       <p>SignIn</p>
       <input id="signin-username" type="text" placeholder="username" required />
       <input
@@ -33,7 +38,9 @@
         required
       />
       <button onclick="signin()">Submit</button>
+      
       <button onclick="moveToSignup()">Don't have an account ? Register</button>
+      <p id="signin-message" style="color: green;"></p>
     </div>
     <br />
 
