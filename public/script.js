@@ -27,6 +27,7 @@ const signup = async () =>  {
             messageElement.textContent = "User has been successfully signed up!";
             setTimeout(() => {
                 moveToSignin();
+                messageElement.textContent = "";
             }, 2000);
         } else {
             messageElement.style.color = "red";
@@ -52,12 +53,15 @@ const signin = async () => {
     const messageElement = document.getElementById("signin-message");
 
         if (response.data.message === "You are succesfully signed in") {
+            localStorage.setItem("token", response.data.token);
             messageElement.style.color = "green";
             messageElement.textContent = "User has been successfully signed in!";
 
             setTimeout(() => {
-                showTodo()
+                showTodo();
+                messageElement.textContent = "";
             }, 2000);
+            
             
         } else {
             messageElement.style.color = "red";

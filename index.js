@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 5;
 
 mongoose.connect(
-  "monogodb URI"
+  "mongodb+srv://lazyrabbit:lazyrabbit123@cluster0.kjmsh.mongodb.net/ToDoApp"
 );
 
 app.use(express.json());
@@ -38,8 +38,6 @@ app.post("/signup", async (req, res) => {
     const foundUser = await userModel.findOne({
       username,
     });
-
-    console.log(foundUser);
 
     if (foundUser != null) {
       res.json({
@@ -73,18 +71,13 @@ app.post("/signin", async (req, res) => {
     username,
   });
 
-  console.log(user);
-  
-  const passwordMatch =await bcrypt.compare(password, user.password);
-
-  console.log(password);
-  console.log(passwordMatch);
-
   try {
+    const passwordMatch = await bcrypt.compare(password, user.password);
     if (user && passwordMatch) {
       const token = jwt.sign(
         {
           id: user._id,
+          username: user.username
         },
         JWT_SECRET
       );
@@ -108,9 +101,9 @@ app.post("/signin", async (req, res) => {
 });
 
 const authMiddleware = (req, res, next) => {
-  const tokenReceievd = req.headers.token;
-  if (tokenReceievd) {
-    jwt.verify(tokenReceievd, JWT_SECRET, (err, decoded) => {
+  const tokenReceived = req.headers.token;
+  if (tokenReceived) {
+    jwt.verify(tokenReceived, JWT_SECRET, (err, decoded) => {
       if (err) {
         res.status(401).send({
           message: "Unauthorized User",
@@ -127,19 +120,27 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-app.get("/todo", authMiddleware, (req, res) => {
-  let user = req.username;
+app.get("/todo", authMiddleware, async (req, res) => {
+  try {
+    let user = req.username;
+    // console.log(user);
+    
+    // Fetch all todos for the given username
+    const userTodos = await todoModel.find({
+      username: user
+    });
 
-  console.log(user);
+    // console.log(userTodos);
 
-  const userTodos = todos.filter((todo) => todo.username === user);
-
-  console.log(userTodos);
-
-  res.json(userTodos);
+    // Respond with the fetched todos
+    res.json(userTodos);
+  } catch (error) {
+    console.error("Error fetching todos:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
-app.post("/todo", authMiddleware, (req, res) => {
+app.post("/todo", authMiddleware, async (req, res) => {
   let user = req.username;
   const { title } = req.body;
 
@@ -149,31 +150,33 @@ app.post("/todo", authMiddleware, (req, res) => {
     });
   }
 
-  const newTodo = {
-    id: todos.length + 1,
+  const foundUser = await userModel.findOne({
     username: user,
+  });
+
+  const userTodos = todoModel.create({
+    id: foundUser._id,
+    username: foundUser.username,
     title,
     done: false,
-  };
-
-  todos.push(newTodo);
+  });
 
   res.json({
     message: "To-Do created succesfully",
-    tofo: newTodo,
+    todo: userTodos
   });
 });
 
-app.put("/todo/:id", authMiddleware, (req, res) => {
+app.put("/todo/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   const { title } = req.body;
 
   const currentUser = req.username;
 
-  const todo = todos.find(
-    (todo) => todo.id === parseInt(id) && todo.username === currentUser
-  );
+  const todo = await todoModel.findOne({
+    username: currentUser
+  });
 
   if (!todo) {
     return res.json({ message: "To-Do not found." });
@@ -184,6 +187,8 @@ app.put("/todo/:id", authMiddleware, (req, res) => {
   }
 
   todo.title = title;
+
+  console.log(todo.title);
 
   res.json({ message: "To-Do updated successfully!", todo });
 });

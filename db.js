@@ -10,7 +10,7 @@ const users = new Schema({
 })
 
 const todo = new Schema({
-    id: ObjectId,
+    id: String,
     username: String,
     title: String,
     done: Boolean
